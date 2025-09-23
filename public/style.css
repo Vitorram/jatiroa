@@ -1,0 +1,115 @@
+/* style.css */
+
+/* Fonte moderna */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: #f9fafb;
+  color: #111827;
+}
+
+/* Header */
+header {
+  background: linear-gradient(90deg, #ec4899, #8b5cf6);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Container */
+.container {
+  width: 95%;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+/* Cards gerais */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+  font-size: 2rem;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+/* Cores personalizadas */
+.card-atendimento { background: linear-gradient(135deg, #10b981, #34d399); color: white; }
+.card-chamado     { background: linear-gradient(135deg, #ef4444, #f87171); color: white; }
+.card-livre       { background: linear-gradient(135deg, #3b82f6, #60a5fa); color: white; }
+
+/* Grid de salas */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card-sala {
+  border: 3px solid transparent;
+  border-radius: 12px;
+  padding: 16px;
+  transition: 0.2s ease;
+}
+
+/* Bordas diferentes conforme status */
+.card-sala.livre {
+  border-color: #16a34a; /* verde */
+}
+
+.card-sala.chamado {
+  border-color: #dc2626; /* vermelho */
+}
+
+
+/* Botão */
+.btn-computador {
+  display: inline-block;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-computador:hover {
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  transform: scale(1.05);
+}

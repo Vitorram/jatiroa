@@ -1,15 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-  <title>Professor - <%= sala %></title>
+  <meta charset="UTF-8">
+  <title>Abrir Chamado - <%= sala %></title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <h1><%= sala %></h1>
-  <form action="/chamado" method="POST">
+  <h2>Abrir chamado - <%= sala %></h2>
+  <form method="POST" action="/chamado" style="max-width: 350px; margin: auto;">
     <input type="hidden" name="sala" value="<%= sala %>">
-    <label>Tipo de chamado: </label>
-    <input type="text" name="tipo">
-    <button type="submit">Chamar</button>
+
+    <label for="tipo">Tipo do chamado:</label>
+    <select name="tipo" id="tipo" required>
+      <option value="" disabled selected>Selecione o tipo</option>
+      <option value="Computador/Projetor">Computador / Projetor</option>
+      <option value="Ar Condicionado">Ar Condicionado</option>
+      <option value="Som">Som</option>
+    </select>
+
+    <button class="btn-computador" style="margin-top: 15px;">Enviar chamado</button>
   </form>
 </body>
 </html>
