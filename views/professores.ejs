@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Professores</title>
+</head>
+<body>
+  <h1>Salas disponíveis</h1>
+  <ul>
+    <% salas.forEach(sala => { %>
+      <li><a href="/professor/<%= sala.split(' ')[1] %>"><%= sala %></a></li>
+    <% }) %>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Professor - <%= sala %></title>
+</head>
+<body>
+  <h1><%= sala %></h1>
+  <form action="/chamado" method="POST">
+    <input type="hidden" name="sala" value="<%= sala %>">
+    <label>Tipo de chamado: </label>
+    <input type="text" name="tipo">
+    <button type="submit">Chamar</button>
+  </form>
+</body>
+</html>

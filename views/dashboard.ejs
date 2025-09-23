@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    socket.on("atualizar", data => {
+      alert(`Sala ${data.sala} agora está ${data.status} (${data.tipo})`);
+      location.reload();
+    });
+  </script>
+</head>
+<body>
+  <h1>Dashboard</h1>
+  <ul>
+    <% for (let sala in salas) { %>
+      <li>
+        <%= sala %> - <%= salas[sala].status %> (<%= salas[sala].tipo %>)
+        <% if (salas[sala].status === "chamado") { %>
+          <form action="/atender/<%= sala.split(' ')[1] %>" method="POST">
+            <button type="submit">Atender</button>
+          </form>
+        <% } %>
+      </li>
+    <% } %>
+  </ul>
+</body>
+</html>
