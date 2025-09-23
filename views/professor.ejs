@@ -3,11 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <title>Abrir Chamado - <%= sala %></title>
-  <link rel="stylesheet" href="/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background-color: #007bff;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+  </style>
 </head>
 <body>
   <h2>Abrir chamado - <%= sala %></h2>
-  <form method="POST" action="/chamado" style="max-width: 350px; margin: auto;">
+  <form method="POST" action="/chamado">
     <input type="hidden" name="sala" value="<%= sala %>">
 
     <label for="tipo">Tipo do chamado:</label>
@@ -18,7 +76,7 @@
       <option value="Som">Som</option>
     </select>
 
-    <button class="btn-computador" style="margin-top: 15px;">Enviar chamado</button>
+    <button type="submit">Enviar chamado</button>
   </form>
 </body>
 </html>

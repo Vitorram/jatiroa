@@ -91,12 +91,12 @@
 
   <div class="dashboard-grid">
     <% for (let sala in salas) { %>
-      <div class="card-sala <%= salas[sala].status %>">
+      <div class="card-sala <%= salas[sala].status %>" data-sala="<%= sala %>">
         <h3><%= sala %></h3>
         <p>Status: <%= salas[sala].status %></p>
         <p>Chamado: <%= salas[sala].tipo || '-' %></p>
         <% if (salas[sala].status === 'chamado') { %>
-          <form method="POST" action="/atender/<%= sala.split(' ')[1] %>" style="margin:0;">
+          <form method="POST" action="/atender/<%= encodeURIComponent(sala) %>" style="margin:0;">
             <button type="submit">Atender</button>
           </form>
         <% } %>
@@ -109,13 +109,34 @@
   <script>
     const socket = io();
     socket.on("atualizar", function(data) {
-      const div = document.querySelector(".card-sala h3:contains('" + data.sala + "')")?.parentElement;
+      // Seleciona o card pelo atributo data-sala
+      const div = document.querySelector(`.card-sala[data-sala="${data.sala}"]`);
       if (!div) return;
+
       div.className = "card-sala " + data.status;
+      div.setAttribute("data-sala", data.sala);
+      div.querySelector("p:nth-of-type(1)").innerText = "Status: " + data.status;
       div.querySelector("p:nth-of-type(2)").innerText = "Chamado: " + (data.tipo || "-");
+
+      // Atualiza o botão
+      let form = div.querySelector("form");
       if (data.status === "chamado") {
+        if (!form) {
+          form = document.createElement("form");
+          form.method = "POST";
+          form.action = "/atender/" + encodeURIComponent(data.sala);
+          form.style.margin = "0";
+          const button = document.createElement("button");
+          button.type = "submit";
+          button.innerText = "Atender";
+          form.appendChild(button);
+          div.appendChild(form);
+        }
+        // Toca som
         const som = document.getElementById("som");
         if (som) { som.currentTime = 0; som.play().catch(()=>{}); }
+      } else {
+        if (form) div.removeChild(form);
       }
     });
   </script>
